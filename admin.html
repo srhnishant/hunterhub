@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HunterHUB | Admin Panel</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">HunterHUB</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+            <a href="admin.html" class="active">Admin</a>
+        </nav>
+    </header>
+    <main>
+        <section class="auth-section" id="admin-login-section">
+            <h2>Admin Login</h2>
+            <form id="adminLoginForm">
+                <label for="adminUsername">Username</label>
+                <input type="text" id="adminUsername" name="adminUsername" required>
+                <label for="adminPassword">Password</label>
+                <input type="password" id="adminPassword" name="adminPassword" required>
+                <button type="submit">Login</button>
+                <div class="form-message" id="adminLoginMessage"></div>
+            </form>
+        </section>
+        <section id="admin-dashboard" style="display:none">
+            <h2>Admin Dashboard</h2>
+            <div class="dashboard-overview">
+                <div id="analytics"></div>
+            </div>
+            <div class="admin-panels">
+                <div class="admin-panel" id="product-management">
+                    <h3>Product Management</h3>
+                    <form id="addProductForm">
+                        <input type="text" id="productName" placeholder="Product Name" required>
+                        <input type="text" id="productDesc" placeholder="Description" required>
+                        <input type="number" id="productPrice" placeholder="Price" min="1" required>
+                        <div id="productImgFields">
+                            <input type="text" class="productImgInput" placeholder="Image URL" required>
+                        </div>
+                        <button type="button" id="addImgFieldBtn">+ Add Another Image</button>
+                        <button type="submit">Add Product</button>
+                    </form>
+                    <div id="productList"></div>
+                </div>
+                <div class="admin-panel" id="user-management">
+                    <h3>User Management</h3>
+                    <div id="userList"></div>
+
+<h3 style="margin-top:2.5rem;">Ordered Products by Users</h3>
+<div id="orderList"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div>&copy; 2025 HunterHUB. All rights reserved.</div>
+    </footer>
+    <script src="js/admin.js"></script>
+</body>
+</html>

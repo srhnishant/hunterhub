@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HunterHUB | Login</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">HunterHUB</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html" class="active">Login</a>
+            <a href="register.html">Register</a>
+            <a href="admin.html">Admin</a>
+        </nav>
+    </header>
+    <main>
+        <section class="auth-section">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <label for="loginName">Name</label>
+                <input type="text" id="loginName" name="loginName" required>
+                <label for="loginMobile">Mobile Number</label>
+                <input type="text" id="loginMobile" name="loginMobile" maxlength="10" required>
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" name="loginPassword" required>
+                <button type="submit">Login</button>
+                <div class="form-message" id="loginMessage"></div>
+            </form>
+            <p>Don't have an account? <a href="register.html">Register here</a>.</p>
+        </section>
+    </main>
+    <footer>
+        <div>&copy; 2025 HunterHUB. All rights reserved.</div>
+    </footer>
+    <script src="js/auth.js"></script>
+</body>
+</html>

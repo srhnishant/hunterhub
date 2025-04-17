@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HunterHUB E-Commerce | Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+      /* Animated floating shapes background */
+      .animated-bg {
+        position: fixed;
+        top: 0; left: 0; width: 100vw; height: 100vh;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .floating-shape {
+        position: absolute;
+        opacity: 0.16;
+        border-radius: 50%;
+        animation: floatShape 12s infinite linear;
+      }
+      @keyframes floatShape {
+        0% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-60px) scale(1.08); }
+        100% { transform: translateY(0) scale(1); }
+      }
+    </style>
+</head>
+<body>
+    <div class="animated-bg">
+      <div class="floating-shape" style="background:#ffb347;width:120px;height:120px;left:10vw;top:20vh;animation-delay:0s"></div>
+      <div class="floating-shape" style="background:#a17fe0;width:90px;height:90px;left:70vw;top:65vh;animation-delay:2s"></div>
+      <div class="floating-shape" style="background:#6dd5ed;width:70px;height:70px;left:50vw;top:35vh;animation-delay:4s"></div>
+      <div class="floating-shape" style="background:#ffe082;width:100px;height:100px;left:80vw;top:10vh;animation-delay:1.5s"></div>
+    </div>
+    <header>
+        <div class="logo animate__animated" id="logo">🎒 HunterHUB</div>
+        <nav>
+            <a href="index.html">🏠 Home</a>
+            <a href="login.html" id="login-link">🔑 Login</a>
+            <a href="register.html" id="register-link">📝 Register</a>
+            <a href="admin.html">🛠️ Admin</a>
+            <a href="#cart" id="cart-link">🛒 Cart (<span id="cart-count">0</span>)</a>
+            <button id="logout-btn" style="display:none; margin-left:1.2rem;" class="logout-btn">🚪 Logout</button>
+            <button id="my-orders-btn" style="display:none; margin-left:1.2rem;" class="btn">📦 My Orders</button>
+<button id="account-btn" style="display:none; margin-left:1.2rem;" class="account-btn">👤 Account</button>
+
+        </nav>
+    </header>
+    <main>
+        <form class="search-form" style="display:flex;justify-content:center;align-items:center;gap:0.5rem;margin:1.2rem 0 1.6rem 0;">
+            <input id="search-bar" type="text" placeholder="Search products..." style="padding:0.55rem 1rem;border-radius:8px;border:1.5px solid #a17fe0;font-size:1rem;min-width:180px;max-width:340px;width:60%;outline:none;box-shadow:0 1px 8px #a17fe022;" />
+            <button id="search-btn" class="btn" type="submit">🔍 Search</button>
+        </form>
+        <section class="welcome">
+            <h1>Welcome to HunterHUB! <span class="emoji-wave">👋</span> <span class="emoji-party">🎉</span></h1>
+            <p>Your one-stop shop for all student essentials <span class="emoji-books">📚</span> <span class="emoji-bag">🎒</span>. Discover <span class="emoji-star">⭐</span> featured products and exclusive deals just for you!</p>
+            <div class="animated-sticker animate__animated animate__bounceIn">
+                <img src="assets/sticker1.gif" alt="Fun Sticker" class="pulse-on-hover" />
+            </div>
+        </section>
+        <section class="product-gallery reveal-on-scroll animate__animated animate__fadeInUp" id="product-gallery">
+            <!-- Products will be loaded here by JS -->
+            <div class="animated-sticker-gallery animate__animated animate__zoomIn">
+                <img src="assets/sticker2.gif" alt="HunterHUB Shopping" class="float-bounce" />
+            </div>
+        </section>
+        <section class="cart-summary reveal-on-scroll animate__animated animate__fadeInRight" id="cart-summary" style="display:none">
+            <h2>Your Cart <span class="emoji-cart">🛒</span> <span class="emoji-confetti">🎊</span></h2>
+            <div id="cart-items"></div>
+            <div id="cart-total"></div>
+            <button id="checkout-btn" class="animated-btn">Checkout</button>
+        </section>
+        <button class="floating-emoji-btn pulse-on-hover" id="fun-emoji-btn" title="Click me for fun!">🥳</button>
+    </main>
+    <!-- My Orders Modal -->
+    <div id="my-orders-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:10000;background:#222b;justify-content:center;align-items:center;">
+      <div style="background:#fff;padding:1.3rem 1.3rem 1rem 1.3rem;border-radius:12px;max-width:98vw;max-height:94vh;overflow-y:auto;box-shadow:0 8px 32px #0004;position:relative;min-width:320px;width:96vw;">
+        <span id="my-orders-modal-close" style="position:absolute;top:7px;right:13px;font-size:2rem;cursor:pointer;color:#a17fe0;">&times;</span>
+        <h2 style="margin-bottom:1rem;">My Orders</h2>
+        <div id="my-orders-modal-body"></div>
+      </div>
+    </div>
+    <footer>
+        <div>&copy; 2025 HunterHUB. All rights reserved. <span class="emoji-footer">✨</span></div>
+        <div>
+            <a href="#">🔒 Privacy Policy</a> | <a href="#">📄 Terms of Service</a>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+    <script>
+// Parallax effect for floating shapes
+window.addEventListener('scroll', function() {
+  const scrollY = window.scrollY;
+  document.querySelectorAll('.floating-shape').forEach((el, i) => {
+    el.style.transform = `translateY(${scrollY * (0.06 + i*0.02)}px)`;
+  });
+});
+// Logo entrance animation
+window.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('logo').classList.add('animate__bounceInDown');
+});
+// Scroll reveal animations
+function revealOnScroll() {
+  const reveals = document.querySelectorAll('.reveal-on-scroll');
+  for (let el of reveals) {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+    if (elementTop < windowHeight - 60) {
+      el.classList.add('animate__fadeInUp');
+      el.style.opacity = 1;
+    }
+  }
+}
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('DOMContentLoaded', () => {
+  revealOnScroll();
+  // Fun emoji button burst
+  const btn = document.getElementById('fun-emoji-btn');
+  btn.addEventListener('click', () => {
+    btn.classList.add('animate__tada');
+    setTimeout(() => btn.classList.remove('animate__tada'), 800);
+    // Emoji burst
+    for(let i=0;i<8;i++){
+      const emoji = document.createElement('span');
+      emoji.textContent = ['🎉','✨','🥳','💥','🎊','🦄','💫','🌟'][i%8];
+      emoji.style.position = 'fixed';
+      emoji.style.left = (btn.getBoundingClientRect().left + 24 + Math.random()*40-20) + 'px';
+      emoji.style.top = (btn.getBoundingClientRect().top + 24 + Math.random()*40-20) + 'px';
+      emoji.style.fontSize = '2rem';
+      emoji.style.pointerEvents = 'none';
+      emoji.style.transition = 'all 1s ease';
+      document.body.appendChild(emoji);
+      setTimeout(()=>{
+        emoji.style.transform = `translateY(-${80+Math.random()*60}px) scale(${0.7+Math.random()*0.7}) rotate(${Math.random()*360}deg)`;
+        emoji.style.opacity = 0;
+      }, 20);
+      setTimeout(()=>emoji.remove(), 1200);
+    }
+  });
+});
+</script>
+</body>
+</html>
